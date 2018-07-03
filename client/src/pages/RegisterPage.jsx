@@ -11,7 +11,6 @@ class RegisterPage extends React.Component {
             user: {
                 firstName: '',
                 lastName: '',
-                username: '',
                 password: '',
                 emailid : ''
             },
@@ -39,7 +38,7 @@ class RegisterPage extends React.Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.username && user.password && user.emailid) {
+        if (user.firstName && user.lastName && user.password && user.emailid) {
             dispatch(userActions.register(user));
         }
     }
@@ -73,13 +72,6 @@ class RegisterPage extends React.Component {
                                 <input type="text" placeholder="Enter Email Adress" className={'form-control' + (submitted && !user.emailid ? ' is-invalid' : '')} name="emailid" value={user.emailid} onChange={this.handleChange} />
                                 {submitted && !user.emailid &&
                                     <div className="text-danger">Email Address is required</div>
-                                }
-                            </div>
-                            <div className='form-group'>
-                                <label htmlFor="username">Username</label>
-                                <input type="text" placeholder="Enter Username" className={'form-control' + (submitted && !user.username ? ' is-invalid' : '')} name="username" value={user.username} onChange={this.handleChange} />
-                                {submitted && !user.username &&
-                                    <div className="text-danger">Username is required</div>
                                 }
                             </div>
                             <div className='form-group'>
