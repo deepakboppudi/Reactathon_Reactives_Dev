@@ -1,5 +1,5 @@
 import React from 'react';
-import HackerInfoDtls from "./HackerInfoDtls";
+
 
 class HackathonCards extends React.Component{
 
@@ -34,7 +34,7 @@ class HackathonCards extends React.Component{
                                     </div>
                                     <div className="mr-5">{item.hacksName}</div>
                                 </div>
-                                <a className="card-footer text-white clearfix small z-1" href="#">
+                                <a className="card-footer text-white clearfix small z-1" href="#" onClick={() => this.props.onHackClick(item.hacksName,item.hackDesc)}>
                                     <span className="float-left">{item.hackDesc}</span>
                                     <span className="float-right">
                                         <i className="fa fa-angle-right">
