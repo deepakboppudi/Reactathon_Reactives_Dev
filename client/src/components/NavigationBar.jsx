@@ -1,4 +1,5 @@
 import React from 'react';
+import Badge from './Badge';
 
 class NavigationBar extends React.Component {
     constructor(props) {
@@ -43,6 +44,10 @@ class NavigationBar extends React.Component {
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
+                          <p class="nav-menu-name">Hi {this.props.firstName}</p>
+                          <Badge badgeId={this.props.badgeId}/>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                             <i className="fa fa-fw fa-sign-out"></i>Logout</a>
                         </li>
@@ -53,4 +58,4 @@ class NavigationBar extends React.Component {
     }
 }
 
-export default NavigationBar; 
+export default NavigationBar;
