@@ -12,10 +12,6 @@ class Dashboard extends React.Component {
         this.curHackathonDesc='';
     }
 
-    onDashboardDetailClick(){
-        this.setState({dboard:false})
-    }
-
     handleBackFromDD(){
         console.log('dboard state change to true');
         this.setState({dboard:true})
@@ -32,7 +28,6 @@ class Dashboard extends React.Component {
         const isDboard = this.state.dboard;
         console.log('dboard : '+isDboard);
         var hackdemo = {"hackathons":{"hacks":[{"hacksName":"reactathon","hackDesc":"Hackathon using react"},{"hacksName":"speedathon","hackDesc":"Speed matters"}]}}
-        this.onDashboardDetailClick = this.onDashboardDetailClick.bind(this);
         this.handleBackFromDD = this.handleBackFromDD.bind(this);
         this.handleHackClick = this.handleHackClick.bind(this);
         return (
@@ -48,9 +43,7 @@ class Dashboard extends React.Component {
                     </ol>
                     <h1>Navbar</h1>
                     <hr/>
-                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>
-                    <a href="#" onClick={() => this.onDashboardDetailClick()}>>click for hack details</a>
-                    
+                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>                   
                     <div style={{height: '1000px'}}></div>
 
                 </div>
