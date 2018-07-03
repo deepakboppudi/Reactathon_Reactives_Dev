@@ -5,6 +5,10 @@ class DashboardDetail extends React.Component{
         super(props);
     }
 
+    showPopup(){
+        console.log("signup popup");
+    }
+
     render(){
         return(
             <div>
@@ -12,6 +16,7 @@ class DashboardDetail extends React.Component{
                 <a href="#" onClick={() => this.props.backHandler()}>Back </a>
                 <p> Hackathon Name : {this.props.hackName}</p>
                 <p> Hackathon Desc : {this.props.hackDesc} </p>
+                <a href="#" onClick={() => this.showPopup()}>Sign up </a>
                 </div>
         )
     }
