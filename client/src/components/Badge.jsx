@@ -7,21 +7,22 @@ class Badge extends React.Component{
 
   getBadge(badgeId){
     switch(badgeId){
-      case "1":
-        return <p class="badge bronze">Bronze</p>
-      case "2":
-        return <p class="badge silver">Silver</p>
-      case "3":
-        return <p class="badge gold">Gold</p>
-      case "4":
-        return <p class="badge platinum">Platinum</p>
+      case 1:
+        return <p className="badge bronze">Bronze</p>
+      case 2:
+        return <p clclassNameass="badge silver">Silver</p>
+      case 3:
+        return <p className="badge gold">Gold</p>
+      case 4:
+        return <p className="badge platinum">Platinum</p>
 
     }
   }
 
   render(){
+    console.log('badge id : '+this.props.badgeId)
     return(
-      <div class="badge-container">
+      <div className="badge-container">
         {this.getBadge(this.props.badgeId)}
       </div>
     )

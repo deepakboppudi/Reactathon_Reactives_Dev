@@ -8,7 +8,7 @@ router.get('/', function(req,res,next){
 //Set up default mongoose connection
 //var mongoDB = 'mongodb://127.0.0.1:27071/reactives';
 //mongoose.connect(mongoDB);
-mongoose.connect('mongodb://127.0.0.1/reactives').then(() => {
+mongoose.connect('mongodb://127.0.0.1:27017/reactives').then(() => {
 console.log("Connected to Database");
 }).catch((err) => {
     console.log("Not Connected to Database ERROR! ", err);
@@ -40,17 +40,19 @@ var newUser = User({
   last_name: lastName,
   email_id: emailId,
   password: password,
-  user_type:userType
+  user_type:userType,
+  badge_id:1
 });
 
 // save the user
 newUser.save(function(err) {
   if (err){
     console.log('error : '+err);
+    res.send("{\"ok\":false}");
     throw err;}
 
   console.log('User created!');
-  res.send("user created");
+  res.send("{\"ok\":true}");
 });
 console.log('Inside 3 : '+resp);
 

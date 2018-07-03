@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
    last_name:   String,
    email_id: String,
    password: String,
-   user_type: Number
+   user_type: Number,
+   badge_id: Number
  });
 
  var User = mongoose.model('user_tbs', userSchema);

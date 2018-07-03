@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userActions } from '../actions';
 
 class RegisterPage extends React.Component {
     constructor(props) {
@@ -10,7 +12,8 @@ class RegisterPage extends React.Component {
                 firstName: '',
                 lastName: '',
                 username: '',
-                password: ''
+                password: '',
+                emailid : ''
             },
             submitted: false
         };
@@ -35,10 +38,14 @@ class RegisterPage extends React.Component {
 
         this.setState({ submitted: true });
         const { user } = this.state;
-
+        const { dispatch } = this.props;
+        if (user.firstName && user.lastName && user.username && user.password && user.emailid) {
+            dispatch(userActions.register(user));
+        }
     }
 
     render() {
+        const { registering  } = this.props;
         const { user, submitted } = this.state;
         
         return(
@@ -62,6 +69,13 @@ class RegisterPage extends React.Component {
                                 }
                             </div>
                             <div className='form-group'>
+                                <label htmlFor="emailid">Email Address</label>
+                                <input type="text" placeholder="Enter Email Adress" className={'form-control' + (submitted && !user.emailid ? ' is-invalid' : '')} name="emailid" value={user.emailid} onChange={this.handleChange} />
+                                {submitted && !user.emailid &&
+                                    <div className="text-danger">Email Address is required</div>
+                                }
+                            </div>
+                            <div className='form-group'>
                                 <label htmlFor="username">Username</label>
                                 <input type="text" placeholder="Enter Username" className={'form-control' + (submitted && !user.username ? ' is-invalid' : '')} name="username" value={user.username} onChange={this.handleChange} />
                                 {submitted && !user.username &&
@@ -77,6 +91,9 @@ class RegisterPage extends React.Component {
                             </div>
                             <div className="form-group">
                                 <button className="btn btn-primary btn-block">Register</button>
+                                {registering && 
+                                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                }
                              </div>
                             <div className="text-center">
                                 <Link to="/" className="btn btn-link">Cancel</Link>
@@ -89,4 +106,12 @@ class RegisterPage extends React.Component {
     }
 }
 
-export default RegisterPage;
+function mapStateToProps(state) {
+    const { registering } = state.registration;
+    return {
+        registering
+    };
+}
+
+const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
+export { connectedRegisterPage as RegisterPage };

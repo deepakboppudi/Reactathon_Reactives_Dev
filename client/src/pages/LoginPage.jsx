@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userActions } from '../actions';
 
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
-
+       console.log("props :: " + JSON.stringify(props));
+        // reset login status
+        this.props.dispatch(userActions.logout());
 
         this.state = {
             emailid: '',
@@ -28,10 +32,14 @@ class LoginPage extends React.Component {
 
         this.setState({ submitted: true });
         const { emailid, password } = this.state;
-
+        const { dispatch } = this.props;
+        if (emailid && password) {
+            dispatch(userActions.login(emailid, password));
+        }
     }
 
     render() {
+        const { loggingIn } = this.props;
         const { emailid, password, submitted } = this.state;
         return (
             <div className="container">
@@ -55,6 +63,9 @@ class LoginPage extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <button className="btn btn-primary btn-block">Login</button>
+                                    {loggingIn &&
+                                        <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    }
                                 </div>
                                 <div className="text-center">
                                     <Link to="/register" className="btn btn-link">Register</Link>
@@ -70,4 +81,13 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage; 
+function mapStateToProps(state) {
+    console.log('state in login : '+JSON.stringify(state));
+    const { loggingIn } = state.authentication;
+    return {
+        loggingIn
+    };
+}
+
+const connectedLoginPage = connect(mapStateToProps)(LoginPage);
+export { connectedLoginPage as LoginPage }; 

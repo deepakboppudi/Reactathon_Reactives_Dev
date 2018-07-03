@@ -1,10 +1,15 @@
 import React from 'react';
+import { userActions } from '../actions';
 import Badge from './Badge';
 
 class NavigationBar extends React.Component {
     constructor(props) {
         super(props);
 
+    }
+
+    onLogOut(props){
+         (userActions.logout());
     }
 
     render() {
@@ -44,10 +49,10 @@ class NavigationBar extends React.Component {
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                          <p class="nav-menu-name">Hi {this.props.firstName}</p>
+                          <p className="nav-menu-name">Hi {this.props.firstName}</p>
                           <Badge badgeId={this.props.badgeId}/>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" onClick={this.onLogOut}>
                             <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                             <i className="fa fa-fw fa-sign-out"></i>Logout</a>
                         </li>

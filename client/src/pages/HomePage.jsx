@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import NavigationBar from '../components/NavigationBar';
 import Dashboard from '../components/Dashboard';
 
@@ -10,13 +11,23 @@ class HomePage extends React.Component {
 
 
     render() {
+        const { user } = this.props;
         return (
             <div className="fixed-nav sticky-footer bg-dark">
-                <NavigationBar firstName="Ace" badgeId="1"/>
+                <NavigationBar firstName={user.first_name} badgeId={user.badge_id}/>
                 <Dashboard/>
             </div>
         );
     }
 }
 
-export default HomePage;
+function mapStateToProps(state) {
+    console.log('state in homepage : '+JSON.stringify(state));
+    const { user } = state.authentication;
+    return {
+        user
+    };
+}
+
+const connectedHomePage = connect(mapStateToProps)(HomePage);
+export { connectedHomePage as HomePage };
