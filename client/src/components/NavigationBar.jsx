@@ -27,18 +27,6 @@ class NavigationBar extends React.Component {
                                 <span className="nav-link-text">Dashboard</span>
                             </a>
                         </li>
-                        <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                            <a className="nav-link" href="#">
-                                <i className="fa fa-fw fa-area-chart"></i>
-                                <span className="nav-link-text">Charts</span>
-                            </a>
-                        </li>
-                        <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                            <a className="nav-link" href="#">
-                                <i className="fa fa-fw fa-table"></i>
-                                <span className="nav-link-text">Tables</span>
-                            </a>
-                        </li>
                     </ul>
                     <ul className="navbar-nav sidenav-toggler">
                         <li className="nav-item">

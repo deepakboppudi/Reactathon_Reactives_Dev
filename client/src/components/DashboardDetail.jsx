@@ -1,20 +1,17 @@
 import React from 'react';
 import LeaderBoard from './LeaderBoard';
-
+import ModalPopup from "./ModalPopup";
 class DashboardDetail extends React.Component{
     constructor(props){
         super(props);
         this.state = {lboard:false};
         //this.curHackathonName='';
+
     }
 
     handleBackFromLD(){
         console.log('lboard state change to true');
         this.setState({lboard:false})
-    }
-
-    onSignUp(){
-        console.log("signup popup");
     }
 
     onLeaderBoard(){
@@ -52,8 +49,8 @@ class DashboardDetail extends React.Component{
                             <p></p>
                             <p></p>
                             <div className="section" style={{paddingBottom:'20px'}}>
-                                <button onClick={this.onSignUp} className="btn btn-success">SignUp</button>
-                                <button onClick={this.onLeaderBoard} style={{marginLeft:'20px'}} className="btn btn-info">LeaderBoard</button>
+                                <ModalPopup className="btn btn-light" buttonLabel="Compete"/>
+                                <button onClick={this.onLeaderBoard} style={{marginTop:'20px'}} className="btn btn-info">LeaderBoard</button>
                             </div>
                         </div>
                     </div>
