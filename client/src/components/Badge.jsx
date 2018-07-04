@@ -10,7 +10,7 @@ class Badge extends React.Component{
       case 1:
         return <p className="badge bronze">Bronze</p>
       case 2:
-        return <p clclassNameass="badge silver">Silver</p>
+        return <p className="badge silver">Silver</p>
       case 3:
         return <p className="badge gold">Gold</p>
       case 4:
