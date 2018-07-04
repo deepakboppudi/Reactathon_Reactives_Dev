@@ -1,18 +1,38 @@
 import React from 'react';
+import LeaderBoard from './LeaderBoard';
 
 class DashboardDetail extends React.Component{
     constructor(props){
         super(props);
+        this.state = {lboard:false};
+        //this.curHackathonName='';
+    }
+
+    handleBackFromLD(){
+        console.log('lboard state change to true');
+        this.setState({lboard:false})
     }
 
     onSignUp(){
         console.log("signup popup");
     }
 
+    onLeaderBoard(){
+      console.log("leaderboard click");
+      //this.curHackathonName=hackName;
+      this.setState({lboard:true})
+    }
+
     render(){
+      const isLboard = this.state.lboard;
+      this.onLeaderBoard = this.onLeaderBoard.bind(this);
+      this.handleBackFromLD = this.handleBackFromLD.bind(this);
+      console.log('isLboard : '+isLboard);
         return(
-                <div className="container">
-                    <div className="row col-md-12 col-xs-12 col-sm-12">
+<div className="container">
+              {isLboard ? (
+                <LeaderBoard hackName={this.curHackathonName} hackName={this.props.hackName} backHandler={this.handleBackFromLD}/>
+              ):(   <div>   <div className="row col-md-12 col-xs-12 col-sm-12">
                         <p>
                             <button type="button"className="btn btn-danger btn-lg" onClick={() => this.props.backHandler()}>
                                 <span className="glyphicon glyphicon-arrow-left"></span> Back
@@ -24,7 +44,7 @@ class DashboardDetail extends React.Component{
                             <img style={{maxWidth:'100%'}} src="../src/images/hackathon1.jpg" />
                         </div>
                         <div className="col-xs-5 col-md-5 col-sm-5" style={{border:'0px solid gray'}}>
-                            <h3>{this.props.hackName}</h3>    
+                            <h3>{this.props.hackName}</h3>
                             <h5 style={{color:'#337ab7'}}>This is hackathon1 description</h5>
                             <div><label><b>StartDate : </b></label><label>04/07/2018</label></div>
                             <div><label><b>EndDate : </b></label><label>06/07/2018</label></div>
@@ -33,8 +53,9 @@ class DashboardDetail extends React.Component{
                             <p></p>
                             <div className="section" style={{paddingBottom:'20px'}}>
                                 <button onClick={this.onSignUp} className="btn btn-success">SignUp</button>
-                            </div>                                        
-                        </div>                              
+                                <button onClick={this.onLeaderBoard} style={{marginLeft:'20px'}} className="btn btn-info">LeaderBoard</button>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-xs-9">
                         <ul className="nav nav-tabs">
@@ -66,15 +87,15 @@ class DashboardDetail extends React.Component{
                                             <li>Teams can work on an idea that they have worked on before (as long as they do not re-use code).</li>
                                             <li>Teams can use libraries, frameworks, or open-source code in their projects. Working on a project before the event and open-sourcing it for the sole purpose of using the code during the event is against the spirit of the rules and is not allowed.</li>
                                             <li>Adding new features to existing projects is allowed. Judges will only consider new functionality introduced or new features added during the hackathon in determining the winners.</li>
-                                        </ol> 
+                                        </ol>
                                     </div>
                                 </div>
                                 <div className="tab-pane container" id="demo">
                                     <div className="row col-xs-12 col-md-12 col-sm-12" style={{marginTop : '15px'}}>
                                         <p>After hacking finishes, teams will show their projects each other and to the judges.</p>
-                                        <p>  You are strongly encouraged to present a demo of what you have built. Pitches or presentations are discouraged. You are not judged on the quality of your pitch or the quality of your idea. As you are judged on what you built, you'll only hurt yourself by not showing a demo.</p> 
+                                        <p>  You are strongly encouraged to present a demo of what you have built. Pitches or presentations are discouraged. You are not judged on the quality of your pitch or the quality of your idea. As you are judged on what you built, you'll only hurt yourself by not showing a demo.</p>
                                         <p>
-                                            
+
 
                                             You are encouraged to present what you have done even if your hack is broken or you weren’t able to finish. It's okay if you didn't finish your hack—that happens all the time! Completion is only one part of the judging criteria, so you might still do well. Also, demoing is not just about the competition. It's a chance to share with others what you learned and what you tried to build—that's what hacking's all about! For being courageous enough to demo, you'll receive a special MLH "I Demoed" sticker—it doesn't matter how good the demo is! In the case that you don't have anything to demo, you can give a presentation about what you tried and what you learned. Hearing what other people learned is interesting and inspiring for other attendees.
                                         </p>
@@ -102,9 +123,9 @@ class DashboardDetail extends React.Component{
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-        )
+                    </div></div>
+        )}
+  </div> )
     }
 
 }
