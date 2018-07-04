@@ -7,6 +7,8 @@ class Badge extends React.Component{
 
   getBadge(badgeId){
     switch(badgeId){
+      case 0:
+        return<p className="badge badge-admin">Admin</p>
       case 1:
         return <p className="badge bronze">Bronze</p>
       case 2:

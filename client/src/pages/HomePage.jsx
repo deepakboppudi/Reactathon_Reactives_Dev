@@ -15,7 +15,7 @@ class HomePage extends React.Component {
         return (
             <div className="fixed-nav sticky-footer bg-dark">
                 <NavigationBar firstName={user.first_name} badgeId={user.badge_id}/>
-                <Dashboard/>
+                <Dashboard userType={user.user_type}/>
             </div>
         );
     }
