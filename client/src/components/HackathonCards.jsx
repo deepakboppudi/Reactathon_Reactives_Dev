@@ -26,7 +26,7 @@ class HackathonCards extends React.Component{
             <div className="row">
                 {
                     this.props.hackathons.hacks.map((item,i) => {
-                       return <div className="col-xl-3 col-sm-6 mb-3">
+                       return <div className="col-xl-3 col-sm-6 md-3" key={i}>
                             <div className={"card text-white o-hidden h-100 "+this.getBgColor(i)}>
                                 <div className="card-body">
                                     <div className="card-body-icon">

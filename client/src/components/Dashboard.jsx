@@ -31,17 +31,16 @@ class Dashboard extends React.Component {
         this.handleBackFromDD = this.handleBackFromDD.bind(this);
         this.handleHackClick = this.handleHackClick.bind(this);
         return (
-            <div className="content-wrapper" style={{marginTop : '50px'}}>
-            state : {isDboard}
+            <div className="content-wrapper" style={{marginTop : '80px'}}>
             {isDboard ? (
                 <div className="container-fluid">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
                             <a href="#">Dashboard</a>
                         </li>
-                        <li className="breadcrumb-item active">Navbar</li>
+                        <li className="breadcrumb-item active">Hackathons</li>
                     </ol>
-                    <h1>Navbar</h1>
+                    <h1>HACKATHONS</h1>
                     <hr/>
                     <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>                   
                     <div style={{height: '1000px'}}></div>
