@@ -40,9 +40,13 @@ class Dashboard extends React.Component {
                         </li>
                         <li className="breadcrumb-item active">Hackathons</li>
                     </ol>
-                    <h1>HACKATHONS</h1>
+                    <h1>MY HACKATHONS</h1>
                     <hr/>
-                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>                   
+                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>
+                    <br/><br/>
+                    <h1>ALL HACKATHONS</h1>
+                    <hr/>
+                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>
                     <div style={{height: '1000px'}}></div>
 
                 </div>
@@ -56,4 +60,4 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard; 
+export default Dashboard;

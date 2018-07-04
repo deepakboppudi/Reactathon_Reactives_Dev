@@ -14,6 +14,7 @@ class Badge extends React.Component{
       case 3:
         return <p className="badge gold">Gold</p>
       case 4:
+      default:
         return <p className="badge platinum">Platinum</p>
 
     }
