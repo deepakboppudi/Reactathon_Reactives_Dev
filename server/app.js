@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userz');
 var getUserRouter = require('./routes/getUser');
 var createUserRouter = require('./routes/createUser');
+var hack1 = require('./services/Hackathon');
 
 var app = express();
 /*var cors = require('cors')
@@ -28,6 +29,8 @@ app.use('/', indexRouter);
 app.use('/userz', usersRouter);
 app.use('/getUser', getUserRouter);
 app.use('/createUser', createUserRouter);
+
+app.use('/hack', hack1);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
