@@ -6,9 +6,7 @@ router.get('/', function(req,res,next){
 var mongoose = require('mongoose');
 var dbService = require('./dbService');
 var Hackathon = require('../models/hackModel');
-// Hackathon.findByName('Hack1', function(err, cb){
-//   console.log(cb);
-// });
+
 var data = [
   {
     name: 'Hack1',
@@ -54,14 +52,6 @@ Hackathon.collection.insert(data, function (err, docs) {
       console.log("Multiple documents inserted to Collection");
     }
   });
-
-  Hackathon.collection.insert(data, function (err, docs) {
-      if (err){
-          return console.error(err);
-      } else {
-        console.log("Multiple documents inserted to Collection");
-      }
-    });
 
 
   });
