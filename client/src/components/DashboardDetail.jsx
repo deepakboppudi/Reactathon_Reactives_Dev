@@ -45,7 +45,7 @@ class DashboardDetail extends React.Component{
                         </div>
                         <div className="col-xs-5 col-md-5 col-sm-5" style={{border:'0px solid gray'}}>
                             <h3>{this.props.hackName}</h3>
-                            <h5 style={{color:'#337ab7'}}>This is hackathon1 description</h5>
+                            <h5 style={{color:'#337ab7'}}>{this.props.hackDesc}</h5>
                             <div><label><b>StartDate : </b></label><label>04/07/2018</label></div>
                             <div><label><b>EndDate : </b></label><label>06/07/2018</label></div>
                             <h5>Team Size : 3 </h5>

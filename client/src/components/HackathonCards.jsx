@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 class HackathonCards extends React.Component{
 
     constructor(props) {
@@ -18,24 +19,25 @@ class HackathonCards extends React.Component{
                 return "bg-success";
         }
     }
-
+    
 
     render(){
-
-       return(
+       if(this.props.hackathons != null){
+       
+        return(
             <div className="row">
-                {
-                    this.props.hackathons.hacks.map((item,i) => {
-                       return <div className="col-xl-3 col-sm-6 md-3" key={i}>
+                    {
+                    this.props.hackathons.map((item,i) => {
+                       return <div className="col-xl-3 col-sm-6 md-3" key={i} style={{marginBottom:'15px'}}>
                             <div className={"card text-white o-hidden h-100 "+this.getBgColor(i)}>
                                 <div className="card-body">
                                     <div className="card-body-icon">
                                         <i className="fa fa-fw fa-list"></i>
                                     </div>
-                                    <div className="mr-5">{item.hacksName}</div>
+                                    <div className="mr-5">{item.name}</div>
                                 </div>
-                                <a className="card-footer text-white clearfix small z-1" href="#" onClick={() => this.props.onHackClick(item.hacksName,item.hackDesc)}>
-                                    <span className="float-left">{item.hackDesc}</span>
+                                <a className="card-footer text-white clearfix small z-1" href="#" onClick={() => this.props.onHackClick(item.name,item.description)}>
+                                    <span className="float-left">{item.description}</span>
                                     <span className="float-right">
                                         <i className="fa fa-angle-right">
                                         </i>
@@ -46,8 +48,15 @@ class HackathonCards extends React.Component{
                     })
                 }
             </div>
-
         );
+
+       }else{
+
+        return(
+            <div></div>
+        )
+       }
+       
     }
 
 }

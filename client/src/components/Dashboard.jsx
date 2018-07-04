@@ -4,6 +4,8 @@ import DashboardDetail from './DashboardDetail';
 import HackathonCards from './HackathonCards';
 import ScrollToTop from './ScrollToTop';
 import CreateHackathon from './CreateHackathon';
+import { connect } from 'react-redux';
+import { hackathonsActions } from '../actions';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -23,10 +25,13 @@ class Dashboard extends React.Component {
         this.setState({dboard:true})
     }
 
-    handleHackClick(hackName,hackDesc){
-        this.curHackathonName=hackName;
-        this.curHackathonDesc=hackDesc;
+    handleHackClick(name,description){
+        this.curHackathonName=name;
+        this.curHackathonDesc=description;
         this.setState({dboard:false})
+    }
+    componentDidMount() {
+        this.props.dispatch(hackathonsActions.getAllHackathons());
     }
 
     onCreateHack(){
@@ -38,7 +43,9 @@ class Dashboard extends React.Component {
         const isDboard = this.state.dboard;
         const isHcreate = this.state.hcreate;
         console.log('dboard : '+isDboard);
-        var hackdemo = {"hackathons":{"hacks":[{"hacksName":"reactathon","hackDesc":"Hackathon using react"},{"hacksName":"speedathon","hackDesc":"Speed matters"}]}}
+        const { items } = this.props;
+        console.log("items  :: " + JSON.stringify(this.props.items));
+        var hackdemo = {"hackathons":{"hacks":[{"name":"reactathon","description":"Hackathon using react"},{"name":"speedathon","description":"Speed matters"}]}}
         this.handleBackFromDD = this.handleBackFromDD.bind(this);
         this.handleHackClick = this.handleHackClick.bind(this);
         this.handleBackFromCH = this.handleBackFromCH.bind(this);
@@ -66,13 +73,13 @@ class Dashboard extends React.Component {
                       <div>
                       <h1>MY HACKATHONS</h1>
                     <hr/>
-                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>
+                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons.hacks}/>
                     </div>
                   )}
                     <br/><br/>
                     <h1>ALL HACKATHONS</h1>
                     <hr/>
-                    <HackathonCards onHackClick={this.handleHackClick} hackathons={hackdemo.hackathons}/>
+                    <HackathonCards onHackClick={this.handleHackClick} hackathons={items}/>
                     <div style={{height: '1000px'}}/>
                 </div>
 
@@ -90,4 +97,13 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+    console.log("data from Dashboard :: " + JSON.stringify(state));
+    const { items } = state.hackathonsdetail;
+    return {
+        items
+    };
+}
+
+const connectedDashboard = connect(mapStateToProps)(Dashboard);
+export { connectedDashboard as Dashboard };

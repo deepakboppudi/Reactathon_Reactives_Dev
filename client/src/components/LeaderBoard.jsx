@@ -16,12 +16,12 @@ class LeaderBoard extends React.Component {
                     </button>
                 </p>
             </div>
-      <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i> <b>{this.props.hackName} Leaderboard</b></div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <div className="card mb-3">
+        <div className="card-header">
+          <i className="fa fa-table"></i> <b>{this.props.hackName} Leaderboard</b></div>
+        <div className="card-body">
+          <div className="table-responsive">
+            <table claclassNamess="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Player</th>
@@ -42,7 +42,7 @@ class LeaderBoard extends React.Component {
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Last updated on { new Date().toLocaleString()}</div>
+        <div className="card-footer small text-muted">Last updated on { new Date().toLocaleString()}</div>
       </div>
 
 

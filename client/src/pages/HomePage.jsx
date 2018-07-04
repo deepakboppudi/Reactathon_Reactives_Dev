@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NavigationBar from '../components/NavigationBar';
-import Dashboard from '../components/Dashboard';
+import { Dashboard } from '../components';
 
 class HomePage extends React.Component {
     constructor(props) {
