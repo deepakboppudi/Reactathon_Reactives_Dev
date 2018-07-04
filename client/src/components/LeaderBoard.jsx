@@ -21,7 +21,7 @@ class LeaderBoard extends React.Component {
           <i className="fa fa-table"></i> <b>{this.props.hackName} Leaderboard</b></div>
         <div className="card-body">
           <div className="table-responsive">
-            <table claclassNamess="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>Player</th>
