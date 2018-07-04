@@ -34,7 +34,7 @@ class HackathonCards extends React.Component{
                                     <div className="card-body-icon">
                                         <i className="fa fa-fw fa-list"></i>
                                     </div>
-                                    <div className="mr-5">{item.name}</div>
+                                    <div className="mr-5"><b>{item.name}</b></div>
                                 </div>
                                 <a className="card-footer text-white clearfix small z-1" href="#" onClick={() => this.props.onHackClick(item.name,item.description)}>
                                     <span className="float-left">{item.description}</span>
